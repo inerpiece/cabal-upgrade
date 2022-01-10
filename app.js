@@ -60,8 +60,8 @@ item.appendChild(bestUpgradeEl);
 
 // Object to be changed based on user input
 let data = {
-    coreCost: 0,
-    converterCost: 0,
+    coreCost: 1000000,
+    converterCost: 70000000,
 }
 
 // Reference the els for cores

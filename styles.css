@@ -29,5 +29,16 @@ html {
     border: 1px solid black;
     display: inline-block;
     border-radius: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.values {
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
 }
 
