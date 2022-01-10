@@ -117,12 +117,12 @@ watch(data, 'coreCost', function(newValue) {
     coreEl.value = newValue;
 
     //update the text field
-    coreVal.textContent = newValue;
+    coreVal.textContent = numberWithCommas(newValue);
 })
 
 watch(data, 'converterCost', function(newValue) {
     converterEl.value = newValue;
-    converterVal.textContent = newValue;
+    converterVal.textContent = numberWithCommas(newValue);
 })
 
 //3. Setup the 'click' event for the button
