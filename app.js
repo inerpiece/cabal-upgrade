@@ -165,6 +165,7 @@ function upgrade() {
             numberOfBracelets++;
             totalConverterCost = totalConverterCost + converterCost;
             temph3.innerHTML = 'Chaos Upgrade (1/15)';
+            temph3.style.color = '#03adfc';
             if (bestUpgrade > 1) {
                 bestUpgrade = bestUpgrade;
             } else {
@@ -183,6 +184,7 @@ function upgrade() {
             upgradeLevel = 2;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (2/15)';
+            temph3.style.color = '#03adfc';
             totalChaosCores = totalChaosCores + 1;
             totalChaosCoreCost = totalChaosCoreCost + coreCost;
             if (bestUpgrade > 2) {
@@ -206,6 +208,7 @@ function upgrade() {
             upgradeLevel = 3;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (3/15)';
+            temph3.style.color = '#03adfc';
             totalChaosCores = totalChaosCores + 1;
             totalChaosCoreCost = totalChaosCoreCost + coreCost;
             if (bestUpgrade > 3) {
@@ -229,6 +232,7 @@ function upgrade() {
             upgradeLevel = 4;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (4/15)';
+            temph3.style.color = '#03adfc';
             totalChaosCores = totalChaosCores + 2;
             totalChaosCoreCost = totalChaosCoreCost + coreCost * 2;
             if (bestUpgrade > 4) {
@@ -252,6 +256,7 @@ function upgrade() {
             upgradeLevel = 5;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (5/15)';
+            temph3.style.color = '#03adfc';
             totalChaosCores = totalChaosCores + 2;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
             if (bestUpgrade > 5) {
@@ -275,6 +280,7 @@ function upgrade() {
             upgradeLevel = 6;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (6/15)';
+            temph3.style.color = '#03adfc';
             totalChaosCores = totalChaosCores + 2;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
             if (bestUpgrade > 6) {
@@ -298,6 +304,7 @@ function upgrade() {
             upgradeLevel = 7;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (7/15)';
+            temph3.style.color = '#fc0380';
             totalChaosCores = totalChaosCores + 3;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
             if (bestUpgrade > 7) {
@@ -321,6 +328,7 @@ function upgrade() {
             upgradeLevel = 8;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (8/15)';
+            temph3.style.color = '#fc0380';
             totalChaosCores = totalChaosCores + 3;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
             if (bestUpgrade > 8) {
@@ -344,6 +352,7 @@ function upgrade() {
             upgradeLevel = 9;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (9/15)';
+            temph3.style.color = '#fc0380';
             totalChaosCores = totalChaosCores + 3;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
             if (bestUpgrade > 9) {
@@ -367,6 +376,7 @@ function upgrade() {
             upgradeLevel = 10;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (10/15)';
+            temph3.style.color = '#fcc203';
             totalChaosCores = totalChaosCores + 4;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
             if (bestUpgrade > 10) {
@@ -390,6 +400,7 @@ function upgrade() {
             upgradeLevel = 11;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (11/15)';
+            temph3.style.color = '#fcc203';
             totalChaosCores = totalChaosCores + 4;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
             if (bestUpgrade > 11) {
@@ -413,6 +424,7 @@ function upgrade() {
             upgradeLevel = 12;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (12/15)';
+            temph3.style.color = '#fcc203';
             totalChaosCores = totalChaosCores + 4;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
             if (bestUpgrade > 12) {
@@ -436,6 +448,7 @@ function upgrade() {
             upgradeLevel = 13;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (13/15)';
+            temph3.style.color = '#fc9d03';
             totalChaosCores = totalChaosCores + 5;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
             if (bestUpgrade > 13) {
@@ -459,6 +472,7 @@ function upgrade() {
             upgradeLevel = 14;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (14/15)';
+            temph3.style.color = '#fc9d03';
             totalChaosCores = totalChaosCores + 5;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
             if (bestUpgrade > 14) {
@@ -482,6 +496,7 @@ function upgrade() {
             upgradeLevel = 15;
             numberOfUpgrades++;
             temph3.innerHTML = 'Chaos Upgrade (15/15)';
+            temph3.style.color = '#fc6f03';
             totalChaosCores = totalChaosCores + 5;
             totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
             if (bestUpgrade > 15) {
@@ -510,7 +525,7 @@ function upgrade() {
     totalCores.innerHTML = `Total Cores: ${totalChaosCores}`;
     totalConverterCostEl.innerHTML = `Total Converter Cost: ${numberWithCommas(totalConverterCost)}`;
     totalCoreCostEl.innerHTML = `Total Chaos Core Cost: ${numberWithCommas(totalChaosCoreCost)}`;
-    
+    // setTimeout(() => {upgrade()}, 50)
 }
 
 // while (totalConverterCost < 500_000_000) {
