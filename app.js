@@ -424,7 +424,7 @@ function upgrade() {
     
 }
 
-while (totalConverterCost < 500_000_000) {
-    upgrade();
-}
+// while (totalConverterCost < 500_000_000) {
+//     upgrade();
+// }
 // console.log(counter);
