@@ -17,6 +17,46 @@ let bestUpgrade = 0;
 // let wantedResult = 9;
 // let counter = 0;
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// let converterCost = 88_000_000;
+// let coreCost = 1_200_000;
+
+let zero = 100;
+let one = 95;
+let two = 90;
+let three = 75;
+let four = 65;
+let five = 60;
+let six = 40;
+let seven = 30;
+let eight = 25;
+let nine = 24;
+let ten = 23;
+let eleven = 22;
+let twelve = 21;
+let thirdteen = 20;
+let fourteen = 20;
+
+let totalCounter = document.createElement('h3');
+item.appendChild(totalCounter);
+
+let totalBracelets = document.createElement('h3');
+item.appendChild(totalBracelets);
+
+let totalCores = document.createElement('h3');
+item.appendChild(totalCores);
+
+let totalConverterCostEl = document.createElement('h3');
+item.appendChild(totalConverterCostEl);
+
+let totalCoreCostEl = document.createElement('h3');
+item.appendChild(totalCoreCostEl);
+
+let bestUpgradeEl = document.createElement('h3');
+item.appendChild(bestUpgradeEl);
 
 // Object to be changed based on user input
 let data = {
@@ -101,58 +141,12 @@ converterEl.addEventListener('input', function() {
     data.converterCost = converterEl.value;
 })
 
-
-// ---------------
-
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-// let coreCostInt = parseInt(data[coreCost]);
-// let converterCost = 88_000_000;
-
-
-let zero = 100;
-let one = 95;
-let two = 90;
-let three = 75;
-let four = 65;
-let five = 60;
-let six = 40;
-let seven = 30;
-let eight = 25;
-let nine = 24;
-let ten = 23;
-let eleven = 22;
-let twelve = 21;
-let thirdteen = 20;
-let fourteen = 20;
-
-let totalCounter = document.createElement('h3');
-item.appendChild(totalCounter);
-
-let totalBracelets = document.createElement('h3');
-item.appendChild(totalBracelets);
-
-let totalCores = document.createElement('h3');
-item.appendChild(totalCores);
-
-let totalConverterCostEl = document.createElement('h3');
-item.appendChild(totalConverterCostEl);
-
-let totalCoreCostEl = document.createElement('h3');
-item.appendChild(totalCoreCostEl);
-
-let bestUpgradeEl = document.createElement('h3');
-item.appendChild(bestUpgradeEl);
-
 function upgrade() {
     //core cost from user input
     let coreCost = parseInt(data.coreCost);
 
     //converter cost from user input
     let converterCost = parseInt(data.converterCost);
-    
-
 
     let randomNum = Math.floor(Math.random() * 100);
     
