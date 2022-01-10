@@ -17,12 +17,99 @@ let bestUpgrade = 0;
 // let wantedResult = 9;
 // let counter = 0;
 
+
+// Object to be changed based on user input
+let data = {
+    coreCost: 0,
+    converterCost: 0,
+}
+
+// Reference the els for cores
+let coreEl = document.getElementById('chaosCoreInput');
+let coreVal = document.getElementById('coreValue');
+
+// Reference the els for converters
+let converterEl = document.getElementById('converterInput');
+let converterVal = document.getElementById('converterValue');
+
+let button = document.getElementById('button');
+
+
+// Event listeners setup
+coreEl.addEventListener('input', function() {
+    data.coreCost = coreEl.value;
+
+    console.log(data.coreCost)
+})
+
+converterEl.addEventListener('input', function() {
+    data.converterCost = converterEl.value;
+})
+
+let watch = function(object, property, callback) {
+    //store initial value for future use
+    let value = object[property];
+
+    //remove the original property since we now want to 'spy' on it
+    delete object[property];
+
+    //define the property again
+    // now using 'get' and 'set'
+    Object.defineProperty(object, property, {
+        configurable: false,
+        enumerable: false,
+        get: function() {
+            //return the value
+            return value;
+        },
+        set: function(newValue) {
+            //update the value
+            value = newValue;
+            //call the callback with the new value
+            callback(newValue);
+        }
+    });
+} 
+
+//2. Watch the 'data' object for changes using the watch func
+watch(data, 'coreCost', function(newValue) {
+    //update the input field value
+    coreEl.value = newValue;
+
+    //update the text field
+    coreVal.textContent = newValue;
+})
+
+watch(data, 'converterCost', function(newValue) {
+    converterEl.value = newValue;
+    converterVal.textContent = newValue;
+})
+
+//3. Setup the 'click' event for the button
+button.addEventListener('click', function() {
+    data.coreCost = coreEl.value;
+    data.converterCost = converterEl.value;
+})
+
+//Adding View to Model binding
+//this must be after 'watch' because 'set' would not bet available before that
+coreEl.addEventListener('input', function() {
+    data.coreCost = coreEl.value;
+})
+
+converterEl.addEventListener('input', function() {
+    data.converterCost = converterEl.value;
+})
+
+
+// ---------------
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+// let coreCostInt = parseInt(data[coreCost]);
+// let converterCost = 88_000_000;
 
-let converterCost = 88_000_000;
-let coreCost = 1_200_000;
 
 let zero = 100;
 let one = 95;
@@ -59,6 +146,14 @@ let bestUpgradeEl = document.createElement('h3');
 item.appendChild(bestUpgradeEl);
 
 function upgrade() {
+    //core cost from user input
+    let coreCost = parseInt(data.coreCost);
+
+    //converter cost from user input
+    let converterCost = parseInt(data.converterCost);
+    
+
+
     let randomNum = Math.floor(Math.random() * 100);
     
     totalCounter.innerHTML = `Total Upgrades: ${numberOfUpgrades}`;
