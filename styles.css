@@ -42,3 +42,7 @@ html {
     flex-direction: column;
 }
 
+label {
+    font-size: 1.5rem;
+}
+

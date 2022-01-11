@@ -10,6 +10,7 @@ let numberOfBracelets = 0;
 let totalChaosCores = 0;
 let totalConverterCost = 0;
 let totalChaosCoreCost = 0;
+let totalSafeguardsUsed = 0;
 let bestUpgrade = 0;
 
 // Uncomment this plus the if statement for the wanted result at the bottom
@@ -58,10 +59,14 @@ item.appendChild(totalCoreCostEl);
 let bestUpgradeEl = document.createElement('h3');
 item.appendChild(bestUpgradeEl);
 
+let totalSafeguardsEl = document.createElement('h3');
+item.appendChild(totalSafeguardsEl);
+
 // Object to be changed based on user input
 let data = {
     coreCost: 1000000,
     converterCost: 70000000,
+    safeguard: false,
 }
 
 // Reference the els for cores
@@ -71,6 +76,11 @@ let coreVal = document.getElementById('coreValue');
 // Reference the els for converters
 let converterEl = document.getElementById('converterInput');
 let converterVal = document.getElementById('converterValue');
+
+// Reference the els for Safeguards
+let safeguardEl = document.getElementById('safeguardInput');
+let safeguardVal = document.getElementById('safeguardValue');
+
 
 let button = document.getElementById('button');
 
@@ -85,6 +95,11 @@ coreEl.addEventListener('input', function() {
 converterEl.addEventListener('input', function() {
     data.converterCost = converterEl.value;
 })
+
+safeguardEl.addEventListener('input', function() {
+    data.safeguard = safeguardEl.checked;
+})
+
 
 let watch = function(object, property, callback) {
     //store initial value for future use
@@ -125,11 +140,16 @@ watch(data, 'converterCost', function(newValue) {
     converterVal.textContent = numberWithCommas(newValue);
 })
 
-//3. Setup the 'click' event for the button
-button.addEventListener('click', function() {
-    data.coreCost = coreEl.value;
-    data.converterCost = converterEl.value;
+watch(data, 'safeguard', function(newValue) {
+    safeguardEl.value = newValue;
+    safeguardVal.textContent = newValue;
 })
+
+//3. Setup the 'click' event for the button
+// button.addEventListener('click', function() {
+//     data.coreCost = coreEl.value;
+//     data.converterCost = converterEl.value;
+// })
 
 //Adding View to Model binding
 //this must be after 'watch' because 'set' would not bet available before that
@@ -139,6 +159,10 @@ coreEl.addEventListener('input', function() {
 
 converterEl.addEventListener('input', function() {
     data.converterCost = converterEl.value;
+})
+
+safeguardEl.addEventListener('input', function() {
+    data.safeguard = safeguardEl.checked;
 })
 
 function upgrade() {
@@ -155,7 +179,6 @@ function upgrade() {
     totalCores.innerHTML = `Total Cores: ${totalChaosCores}`;
     totalConverterCostEl.innerHTML = `Total Cores: ${totalConverterCost}`;
     totalCoreCostEl.innerHTML = `Total Cores: ${totalChaosCoreCost}`;
-    bestUpgradeEl.innerHTML = `Best Upgrade: ${bestUpgrade}`;
     
     if (upgradeLevel == 0) {
         let isLower = randomNum <= zero;
@@ -193,12 +216,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + coreCost;
-            totalChaosCores = totalChaosCores + 1;
+            if (data.safeguard) {
+                upgradeLevel = 1;
+                temph3.innerHTML = 'Chaos Upgrade (1/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + coreCost;
+                totalChaosCores = totalChaosCores + 1;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + coreCost;
+                totalChaosCores = totalChaosCores + 1;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -217,12 +252,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + coreCost;
-            totalChaosCores = totalChaosCores + 1;
+            if (data.safeguard) {
+                upgradeLevel = 2;
+                temph3.innerHTML = 'Chaos Upgrade (2/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + coreCost;
+                totalChaosCores = totalChaosCores + 1;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + coreCost;
+                totalChaosCores = totalChaosCores + 1;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -241,12 +288,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
-            totalChaosCores = totalChaosCores + 2;
+            if (data.safeguard) {
+                upgradeLevel = 3;
+                temph3.innerHTML = 'Chaos Upgrade (3/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
+                totalChaosCores = totalChaosCores + 2;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
+                totalChaosCores = totalChaosCores + 2;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -265,12 +324,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
-            totalChaosCores = totalChaosCores + 2;
+            if (data.safeguard) {
+                upgradeLevel = 4;
+                temph3.innerHTML = 'Chaos Upgrade (4/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
+                totalChaosCores = totalChaosCores + 2;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
+                totalChaosCores = totalChaosCores + 2;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -289,12 +360,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
-            totalChaosCores = totalChaosCores + 2;
+            if (data.safeguard) {
+                upgradeLevel = 5;
+                temph3.innerHTML = 'Chaos Upgrade (5/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
+                totalChaosCores = totalChaosCores + 2;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 2);
+                totalChaosCores = totalChaosCores + 2;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -313,12 +396,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
-            totalChaosCores = totalChaosCores + 3;
+            if (data.safeguard) {
+                upgradeLevel = 6;
+                temph3.innerHTML = 'Chaos Upgrade (6/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
+                totalChaosCores = totalChaosCores + 3;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
+                totalChaosCores = totalChaosCores + 3;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -337,12 +432,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
-            totalChaosCores = totalChaosCores + 3;
+            if (data.safeguard) {
+                upgradeLevel = 7;
+                temph3.innerHTML = 'Chaos Upgrade (7/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
+                totalChaosCores = totalChaosCores + 3;
+                totalSafeguardsUsed = totalSafeguardsUsed + 1;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
+                totalChaosCores = totalChaosCores + 3;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -361,12 +468,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
-            totalChaosCores = totalChaosCores + 3;
+            if (data.safeguard) {
+                upgradeLevel = 8;
+                temph3.innerHTML = 'Chaos Upgrade (8/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
+                totalChaosCores = totalChaosCores + 3;
+                totalSafeguardsUsed = totalSafeguardsUsed + 2;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 3);
+                totalChaosCores = totalChaosCores + 3;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -385,12 +504,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
-            totalChaosCores = totalChaosCores + 4;
+            if (data.safeguard) {
+                upgradeLevel = 9;
+                temph3.innerHTML = 'Chaos Upgrade (9/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
+                totalChaosCores = totalChaosCores + 4;
+                totalSafeguardsUsed = totalSafeguardsUsed + 4;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
+                totalChaosCores = totalChaosCores + 4;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -409,12 +540,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
-            totalChaosCores = totalChaosCores + 4;
+            if (data.safeguard) {
+                upgradeLevel = 10;
+                temph3.innerHTML = 'Chaos Upgrade (10/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
+                totalChaosCores = totalChaosCores + 4;
+                totalSafeguardsUsed = totalSafeguardsUsed + 8;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
+                totalChaosCores = totalChaosCores + 4;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -433,12 +576,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
-            totalChaosCores = totalChaosCores + 4;
+            if (data.safeguard) {
+                upgradeLevel = 11;
+                temph3.innerHTML = 'Chaos Upgrade (11/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
+                totalChaosCores = totalChaosCores + 4;
+                totalSafeguardsUsed = totalSafeguardsUsed + 16;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 4);
+                totalChaosCores = totalChaosCores + 4;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -457,12 +612,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
-            totalChaosCores = totalChaosCores + 5;
+            if (data.safeguard) {
+                upgradeLevel = 12;
+                temph3.innerHTML = 'Chaos Upgrade (12/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
+                totalChaosCores = totalChaosCores + 5;
+                totalSafeguardsUsed = totalSafeguardsUsed + 32;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
+                totalChaosCores = totalChaosCores + 5;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -481,12 +648,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
-            totalChaosCores = totalChaosCores + 5;
+            if (data.safeguard) {
+                upgradeLevel = 13;
+                temph3.innerHTML = 'Chaos Upgrade (13/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
+                totalChaosCores = totalChaosCores + 5;
+                totalSafeguardsUsed = totalSafeguardsUsed + 64;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
+                totalChaosCores = totalChaosCores + 5;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -505,12 +684,24 @@ function upgrade() {
                 bestUpgrade = upgradeLevel;
             }
         } else {
-            upgradeLevel = 0;
-            temph3.innerHTML = 'Chaos Upgrade (0/15)';
-            // numberOfBracelets++;
-            // totalConverterCost = totalConverterCost + converterCost;
-            totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
-            totalChaosCores = totalChaosCores + 5;
+            if (data.safeguard) {
+                upgradeLevel = 14;
+                temph3.innerHTML = 'Chaos Upgrade (14/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
+                totalChaosCores = totalChaosCores + 5;
+                totalSafeguardsUsed = totalSafeguardsUsed + 128;
+                numberOfUpgrades++;
+            } else {
+                upgradeLevel = 0;
+                temph3.innerHTML = 'Chaos Upgrade (0/15)';
+                // numberOfBracelets++;
+                // totalConverterCost = totalConverterCost + converterCost;
+                totalChaosCoreCost = totalChaosCoreCost + (coreCost * 5);
+                totalChaosCores = totalChaosCores + 5;
+                numberOfUpgrades++;
+            }
         }
     }
 
@@ -525,6 +716,8 @@ function upgrade() {
     totalCores.innerHTML = `Total Cores: ${totalChaosCores}`;
     totalConverterCostEl.innerHTML = `Total Converter Cost: ${numberWithCommas(totalConverterCost)}`;
     totalCoreCostEl.innerHTML = `Total Chaos Core Cost: ${numberWithCommas(totalChaosCoreCost)}`;
+    bestUpgradeEl.innerHTML = `Best Upgrade: ${bestUpgrade}`;
+    totalSafeguardsEl.innerHTML = `Total Safeguards Used: ${totalSafeguardsUsed}`;
     // setTimeout(() => {upgrade()}, 50)
 }
 
